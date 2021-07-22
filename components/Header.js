@@ -7,8 +7,12 @@ import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
 import NotificationsNoneOutlinedIcon from "@material-ui/icons/NotificationsNoneOutlined";
 import AddCircleOutlinedIcon from "@material-ui/icons/AddCircleOutlined";
 import Tooltip from "react-simple-tooltip";
+import { auth } from "../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Header() {
+  const [user] = useAuthState(auth);
+
   return (
     <Container>
       {/* Left */}
@@ -62,14 +66,14 @@ function Header() {
             content={<ToolTipWord>Log Out</ToolTipWord>}
           >
             <div className="logoutIcon">
-              <IconButton>
+              <IconButton onClick={() => auth.signOut()}>
                 <ExitToAppOutlinedIcon />
               </IconButton>
             </div>
           </Tooltip>
 
           <div className="avatar">
-            <Avatar />
+            <Avatar src={user.photoURL} />
           </div>
         </div>
       </Right>
