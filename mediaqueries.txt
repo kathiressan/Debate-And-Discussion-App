@@ -1,17 +1,17 @@
 /* Extra small devices (phones, 640px and down) */
-// @media only screen and (max-width: 640px) {...}
+// @media only screen and (max-width: 640px) {}
 
 /* Small devices (portrait tablets and large phones, 640px and up) */
-// @media only screen and (min-width: 640px) {...}
+// @media only screen and (min-width: 640px) {}
 
 /* Medium devices (landscape tablets, 768px and up) */
-//  @media only screen and (min-width: 768px) {...}
+//  @media only screen and (min-width: 768px) {}
 
 /* Large devices (laptops/desktops, 1024px and up) */
-//  @media only screen and (min-width: 1024px) {...}
+//  @media only screen and (min-width: 1024px) {}
 
 /* Extra large devices (large laptops and desktops, 1280px and up) */
-//  @media only screen and (min-width: 1280px) {...}
+//  @media only screen and (min-width: 1280px) {}
 
 /* Double Extra large devices (large screens, 1536px and up) */
-//  @media only screen and (min-width: 1536px) {...}
+//  @media only screen and (min-width: 1536px) {}

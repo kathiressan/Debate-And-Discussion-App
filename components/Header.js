@@ -8,17 +8,23 @@ import NotificationsNoneOutlinedIcon from "@material-ui/icons/NotificationsNoneO
 import AddCircleOutlinedIcon from "@material-ui/icons/AddCircleOutlined";
 import Tooltip from "react-simple-tooltip";
 import { auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useSelector } from "react-redux";
+import { selectUser } from "../redux/slices/userSlice";
+import Link from "next/link";
 
 function Header() {
-  const [user] = useAuthState(auth);
+  const getUser = useSelector(selectUser);
 
   return (
     <Container>
       {/* Left */}
       <Left>
-        <div className="logo">LOGO</div>
-        <div className="appName">Debate</div>
+        <Link href="/">
+          <a>
+            <div className="logo">LOGO</div>
+            <div className="appName">Debate</div>
+          </a>
+        </Link>
       </Left>
 
       {/* Center */}
@@ -44,9 +50,13 @@ function Header() {
             content={<ToolTipWord>Create New Post</ToolTipWord>}
           >
             <div className="createPost">
-              <IconButton>
-                <AddCircleOutlinedIcon />
-              </IconButton>
+              <Link href="/createtopic">
+                <a>
+                  <IconButton>
+                    <AddCircleOutlinedIcon />
+                  </IconButton>
+                </a>
+              </Link>
             </div>
           </Tooltip>
 
@@ -55,9 +65,11 @@ function Header() {
             content={<ToolTipWord>Notifications</ToolTipWord>}
           >
             <div className="notificationIcon">
-              <IconButton>
-                <NotificationsNoneOutlinedIcon />
-              </IconButton>
+              <a href="#">
+                <IconButton>
+                  <NotificationsNoneOutlinedIcon />
+                </IconButton>
+              </a>
             </div>
           </Tooltip>
 
@@ -66,14 +78,16 @@ function Header() {
             content={<ToolTipWord>Log Out</ToolTipWord>}
           >
             <div className="logoutIcon">
-              <IconButton onClick={() => auth.signOut()}>
-                <ExitToAppOutlinedIcon />
-              </IconButton>
+              <a href="#">
+                <IconButton onClick={() => auth.signOut()}>
+                  <ExitToAppOutlinedIcon />
+                </IconButton>
+              </a>
             </div>
           </Tooltip>
 
           <div className="avatar">
-            <Avatar src={user.photoURL} />
+            <Avatar src={getUser?.photoURL} />
           </div>
         </div>
       </Right>
@@ -157,6 +171,9 @@ const Right = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  @media only screen and (max-width: 640px) {
+    padding-left: 0;
+  }
   .MuiSvgIcon-root {
     color: white;
     @media only screen and (min-width: 1280px) {

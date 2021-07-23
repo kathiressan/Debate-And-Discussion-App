@@ -1,32 +1,41 @@
 import styled from "styled-components";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { useRouter } from "next/router";
 
-function SummaryTopicBox() {
+function SummaryTopicBox({
+  id,
+  creatorName,
+  creatorEmail,
+  creatorPhoto,
+  statement,
+  description,
+  agree,
+  disagree,
+  timestamp,
+}) {
+  const router = useRouter();
+  const viewTopic = () => {
+    if (!id) return;
+
+    router.push(`/topic?topicId=${id}`);
+  };
   return (
-    <Container>
+    <Container onClick={viewTopic}>
       <div className="box-content">
         <div className="text">
-          <div className="title">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur,
-            expedita!
-          </div>
-          <div className="description">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima
-            voluptatem commodi nesciunt fugiat beatae, repudiandae cupiditate
-            architecto explicabo vel esse quae placeat ratione unde vitae aut
-            dolor sint quis consequuntur?
-          </div>
+          <div className="title">{statement}</div>
+          <div className="description">{description}</div>
         </div>
 
         <div className="votes">
           <div className="agree">
             <CheckCircleIcon />
-            <span>70%</span>
+            <span>{agree}%</span>
           </div>
           <div className="disagree">
             <CancelIcon />
-            <span>30%</span>
+            <span>{disagree}%</span>
           </div>
         </div>
       </div>

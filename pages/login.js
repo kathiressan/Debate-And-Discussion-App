@@ -16,7 +16,12 @@ function login() {
       <LoginContainer>
         <div className="logo">Debate App</div>
         <Button onClick={() => signIn()} variant="outlined" className="btn">
-          Sign In With Google
+          Sign In With &nbsp; <span className="tb">G</span>
+          <span className="tr">O</span>
+          <span className="ty">O</span>
+          <span className="tb">G</span>
+          <span className="tg">L</span>
+          <span className="tr">E</span>
         </Button>
       </LoginContainer>
     </Container>
@@ -37,7 +42,7 @@ const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: white;
   border-radius: 5px;
   box-shadow: 0px 4px 14px -3px rgba(0, 0, 0, 0.7);
 
@@ -50,10 +55,23 @@ const LoginContainer = styled.div`
 
   .btn {
     background-color: white;
-    :hover {
-      transition: color 0.2s, background-color 0.4s;
-      background-color: #1a73e8;
-      color: white;
+    .tg,
+    .ty,
+    .tr,
+    .tb {
+      font-weight: bold;
+    }
+    .tg {
+      color: #3cba54;
+    }
+    .ty {
+      color: #f4c20d;
+    }
+    .tr {
+      color: #db3236;
+    }
+    .tb {
+      color: #4885ed;
     }
   }
 `;

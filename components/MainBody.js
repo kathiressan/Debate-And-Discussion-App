@@ -1,18 +1,55 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { db } from "../firebase";
 import SummaryTopicBox from "./SummaryTopicBox";
 
 function MainBody() {
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    db.collection("topics")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setTopics(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
+
   return (
     <Container>
       <div className="content">
-        <SummaryTopicBox />
-        <SummaryTopicBox />
-        <SummaryTopicBox />
-        <SummaryTopicBox />
-        <SummaryTopicBox />
-        <SummaryTopicBox />
-        <SummaryTopicBox />
-        <SummaryTopicBox />
+        {topics.map(
+          ({
+            id,
+            data: {
+              creatorEmail,
+              creatorName,
+              creatorPhoto,
+              description,
+              statement,
+              timestamp,
+              agree,
+              disagree,
+            },
+          }) => (
+            <SummaryTopicBox
+              key={id}
+              id={id}
+              creatorName={creatorName}
+              description={description}
+              creatorPhoto={creatorPhoto}
+              creatorEmail={creatorEmail}
+              statement={statement}
+              agree={agree}
+              disagree={disagree}
+              timestamp={timestamp}
+            />
+          )
+        )}
       </div>
     </Container>
   );
