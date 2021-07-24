@@ -22,7 +22,7 @@ function MainBody() {
   return (
     <Container>
       <div className="content">
-        {topics.map(
+        {topics?.map(
           ({
             id,
             data: {

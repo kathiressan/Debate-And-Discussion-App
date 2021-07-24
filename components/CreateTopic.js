@@ -50,7 +50,7 @@ function CreateTopic() {
           <p className="errors">This field is required</p>
         )}
         {errors?.formStatement?.type === "minLength" && (
-          <p className="errors">Min length is 10</p>
+          <p className="errors">Min length is 10 characters</p>
         )}
         <label>Description: </label>
         <textarea
@@ -64,7 +64,7 @@ function CreateTopic() {
           <p className="errors">This field is required</p>
         )}
         {errors?.formDescription?.type === "minLength" && (
-          <p className="errors">Min length is 10</p>
+          <p className="errors">Min length is 10 characters</p>
         )}
         <button>Create Topic</button>
       </div>
@@ -112,11 +112,13 @@ const Form = styled.form`
       border: 1px solid grey;
       border-radius: 0.2rem;
       max-width: 20rem;
+      outline: none;
       :focus {
         --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
           0 4px 6px -2px rgba(0, 0, 0, 0.05);
         box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
           var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        border: 1px solid #1a73e8;
       }
     }
     button {

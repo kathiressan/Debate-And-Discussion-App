@@ -8,11 +8,12 @@ import NotificationsNoneOutlinedIcon from "@material-ui/icons/NotificationsNoneO
 import AddCircleOutlinedIcon from "@material-ui/icons/AddCircleOutlined";
 import Tooltip from "react-simple-tooltip";
 import { auth } from "../firebase";
-import { useSelector } from "react-redux";
-import { selectUser } from "../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { removeUser, selectUser } from "../redux/slices/userSlice";
 import Link from "next/link";
 
 function Header() {
+  const dispatch = useDispatch();
   const getUser = useSelector(selectUser);
 
   return (
@@ -32,7 +33,7 @@ function Header() {
         <div>
           <SearchOutlinedIcon />
           <form onSubmit={(e) => e.preventDefault()}>
-            <input type="text" />
+            <input placeholder="Search" type="text" />
           </form>
         </div>
       </Center>
@@ -78,11 +79,18 @@ function Header() {
             content={<ToolTipWord>Log Out</ToolTipWord>}
           >
             <div className="logoutIcon">
-              <a href="#">
-                <IconButton onClick={() => auth.signOut()}>
-                  <ExitToAppOutlinedIcon />
-                </IconButton>
-              </a>
+              <Link href="/login">
+                <a href="#">
+                  <IconButton
+                    onClick={() => {
+                      dispatch(removeUser());
+                      auth.signOut();
+                    }}
+                  >
+                    <ExitToAppOutlinedIcon />
+                  </IconButton>
+                </a>
+              </Link>
             </div>
           </Tooltip>
 

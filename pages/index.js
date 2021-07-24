@@ -9,7 +9,7 @@ import Login from "./login";
 import Loading from "../components/Loading";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setUser } from "../redux/slices/userSlice";
+import { removeUser, setUser } from "../redux/slices/userSlice";
 
 export default function Home() {
   const [user, loading] = useAuthState(auth);
@@ -32,6 +32,8 @@ export default function Home() {
           photoURL: user.photoURL,
         })
       );
+    } else {
+      dispatch(removeUser());
     }
   }, [user, dispatch]);
 
